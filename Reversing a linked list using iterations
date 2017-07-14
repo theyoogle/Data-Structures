@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+	int data;
+	struct Node* next;
+};
+
+struct Node* head;
+
+void Insert(int a){
+	struct Node* temp = (struct Node*) malloc(sizeof(struct Node*));
+	temp->data = a;
+	temp->next = NULL;
+	if(head == NULL){
+		head = temp;
+		return;
+		}
+	struct Node* temp2 = head;
+	struct Node* temp1;
+	while(temp2 != NULL){
+		temp1 = temp2;
+		temp2 = temp2->next;
+		}
+		
+	temp1->next = temp;
+}
+
+void Print(){
+	struct Node* temp = head;
+	while(temp != NULL){
+		printf("%d ",temp->data);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+
+void Reverse(){
+	struct Node *prev, *current, *next;
+	current = head;
+	prev = NULL;
+	while(current != NULL){
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+		}
+	head = prev;
+	}
+
+int main(){
+	head = NULL;
+	Insert(2);
+	Insert(4);
+	Insert(6);
+	Insert(8);
+	Print();
+	Reverse();
+	Print();
+}
