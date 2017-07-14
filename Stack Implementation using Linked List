@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+	int data;
+	struct Node* next;
+	};
+	
+struct Node* top = NULL;
+	
+void push(int data){
+	struct Node* temp = (struct Node*) malloc(sizeof(struct Node*));
+	temp->data = data;
+	temp->next = top;
+	top = temp;
+	}
+	
+void pop(){
+	if(top == NULL){
+		printf("UNDERFLOW");
+		return;
+		}
+	struct Node* temp = top;
+	top = temp->next;
+	free(temp);
+	}
+	
+void print(){
+	struct Node* temp = top;
+	while(temp != NULL){
+		printf("%d ",temp->data);
+		temp = temp->next;
+		}
+	printf("\n");
+	}
+	
+void main()
+{
+	push(10); print();
+	push(20); print();
+	push(30); print();
+	pop(); print();
+	pop(); print();
+	pop(); print();
+	pop();
+}
